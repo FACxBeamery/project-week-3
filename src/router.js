@@ -48,7 +48,8 @@ const handler = (request, response) => {
                 parsedTodos.push({
                     id: parsedTodos.length + 1,
                     title: request.headers.title,
-                    completed: false
+                    completed: false,
+                    dateCreated: Date.now()
                 });
                 fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
                     if (error) {
@@ -134,14 +135,36 @@ const handler = (request, response) => {
                 });
             }
         });
-    }
-
-    // else if (endpoint.indexOf("css") !== -1 || endpoint.indexOf("img") !== -1) {
-    //     handlePublic(request, response, endpoint);
-    // } else if (endpoint === "/create-post") {
-    //     dataReader(request, response);
-    // }
-    else {
+    } else if (endpoint === "/sorttodos") {
+        const filePath = path.join(__dirname, "todos.json");
+        fs.readFile(filePath, (error, file) => {
+            if (error) {
+                console.log(error);
+                response.writeHead(404, { "Content-Type": "text/html" });
+                response.end("<h1>404 Not Found</h1>");
+            } else {
+                const sortBy = request.headers.sortby;
+                let parsedTodos = JSON.parse(file);
+                if (sortBy === "status") {
+                    parsedTodos.sort((a, b) => {
+                        return a.completed - b.completed;
+                    });
+                } else if (sortBy === "date") {
+                    parsedTodos.sort((a, b) => {
+                        return new Date(b.dateCreated) - new Date(a.dateCreated);
+                    });
+                }
+                fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        response.writeHead(200, { "Content-Type": "text/html" });
+                        response.end(`Todo completed`);
+                    }
+                });
+            }
+        });
+    } else {
         response.writeHead(404, { "Content-Type": "text/html" });
         response.end("<h1>404 Not Found</h1>");
     }
