@@ -109,6 +109,31 @@ const handler = (request, response) => {
                 });
             }
         });
+    } else if (endpoint === "/undocompletetodo") {
+        const filePath = path.join(__dirname, "todos.json");
+        fs.readFile(filePath, (error, file) => {
+            if (error) {
+                console.log(error);
+                response.writeHead(404, { "Content-Type": "text/html" });
+                response.end("<h1>404 Not Found</h1>");
+            } else {
+                const id = request.headers.id;
+                let parsedTodos = JSON.parse(file);
+                parsedTodos.map((todoItem) => {
+                    if (todoItem.id === Number(id)) {
+                        todoItem.completed = false;
+                    }
+                });
+                fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        response.writeHead(200, { "Content-Type": "text/html" });
+                        response.end(`Todo completed`);
+                    }
+                });
+            }
+        });
     }
 
     // else if (endpoint.indexOf("css") !== -1 || endpoint.indexOf("img") !== -1) {
