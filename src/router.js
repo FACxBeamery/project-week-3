@@ -59,6 +59,30 @@ const handler = (request, response) => {
                 });
             }
         });
+    } else if (endpoint === "/removetodo") {
+        const filePath = path.join(__dirname, "todos.json");
+        fs.readFile(filePath, (error, file) => {
+            if (error) {
+                console.log(error);
+                response.writeHead(404, { "Content-Type": "text/html" });
+                response.end("<h1>404 Not Found</h1>");
+            } else {
+                const id = request.headers.id;
+                console.log(id);
+                let parsedTodos = JSON.parse(file);
+                console.log(parsedTodos);
+                parsedTodos = parsedTodos.filter((todoItem) => todoItem.id !== Number(id));
+                console.log("after filter", parsedTodos);
+                fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        response.writeHead(200, { "Content-Type": "text/html" });
+                        response.end(`Todo deleted`);
+                    }
+                });
+            }
+        });
     }
 
     // else if (endpoint.indexOf("css") !== -1 || endpoint.indexOf("img") !== -1) {
