@@ -1,19 +1,20 @@
 {
-  "name": "project-week-3",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FACxBeamery/project-week-3.git"
-  },
-  "author": "Joao, Martha, Lyndsey",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FACxBeamery/project-week-3/issues"
-  },
-  "homepage": "https://github.com/FACxBeamery/project-week-3#readme"
+    "name": "project-week-3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node src/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FACxBeamery/project-week-3.git"
+    },
+    "author": "Joao, Martha, Lyndsey",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/FACxBeamery/project-week-3/issues"
+    },
+    "homepage": "https://github.com/FACxBeamery/project-week-3#readme"
 }
