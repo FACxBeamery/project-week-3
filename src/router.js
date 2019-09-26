@@ -100,7 +100,8 @@ const editTodo = (response, request, error, file, filePath) => {
 const writeTodoList = (filePath, jsonTodoList, error, response, message) => {
     fs.writeFile(filePath, jsonTodoList, "utf8", (error) => {
         if (error) {
-            console.log(error);
+            response.writeHead(500, { "Content-Type": "text/html" });
+            response.end("could not write on todos.json file");
         } else {
             response.writeHead(201, { "Content-Type": "text/html" });
             response.end(message);
