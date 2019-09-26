@@ -30,17 +30,27 @@ const addTodo = (response, request, error, file, filePath) => {
     };
     parsedTodos = pf.addToArray(parsedTodos, newTodo);
 
-    writeTodoList(filePath, JSON.stringify(parsedTodos), error, response);
+    writeTodoList(
+        filePath,
+        JSON.stringify(parsedTodos),
+        error,
+        response,
+        `todo with id: ${newTodo.id} has been added successfully`
+    );
 };
 
 const removeTodo = (response, request, error, file, filePath) => {
     const id = request.headers.id;
-
     let parsedTodos = JSON.parse(file);
-
     parsedTodos = pf.removeFromArray(parsedTodos, id);
 
-    writeTodoList(filePath, JSON.stringify(parsedTodos), error, response);
+    writeTodoList(
+        filePath,
+        JSON.stringify(parsedTodos),
+        error,
+        response,
+        `todo with id: ${id} has been removed successfully`
+    );
 };
 
 const toggleTodoStatus = (response, request, error, file, filePath) => {
@@ -49,14 +59,26 @@ const toggleTodoStatus = (response, request, error, file, filePath) => {
     const newStatus = request.url === "/completetodo";
     parsedTodos = pf.toggleItemStatus(parsedTodos, id, newStatus, date.Now());
 
-    writeTodoList(filePath, JSON.stringify(parsedTodos), error, response);
+    writeTodoList(
+        filePath,
+        JSON.stringify(parsedTodos),
+        error,
+        response,
+        `todo with id: ${id} has had its status toggled to ${newStatus}`
+    );
 };
 
 const sortTodos = (response, request, error, file, filePath) => {
     const sortBy = request.headers.sortby;
     let parsedTodos = JSON.parse(file);
     parsedTodos = pf.sortArray(parsedTodos, sortBy);
-    writeTodoList(filePath, JSON.stringify(parsedTodos), error, response);
+    writeTodoList(
+        filePath,
+        JSON.stringify(parsedTodos),
+        error,
+        response,
+        `Todos have been sorted by ${sortBy}`
+    );
 };
 
 const editTodo = (response, request, error, file, filePath) => {
@@ -66,16 +88,23 @@ const editTodo = (response, request, error, file, filePath) => {
     let parsedTodos = JSON.parse(file);
     parsedTodos = pf.editArray(parsedTodos, id, newTitle, date.Now());
 
-    writeTodoList(filePath, JSON.stringify(parsedTodos), error, response);
+    writeTodoList(
+        filePath,
+        JSON.stringify(parsedTodos),
+        error,
+        response,
+        `Todo with id: ${id} has been edited`
+    );
 };
 
-const writeTodoList = (filePath, jsonTodoList, error, response) => {
+const writeTodoList = (filePath, jsonTodoList, error, response, message) => {
     fs.writeFile(filePath, jsonTodoList, "utf8", (error) => {
         if (error) {
-            console.log(error);
+            response.writeHead(500, { "Content-Type": "text/html" });
+            response.end("could not write on todos.json file");
         } else {
             response.writeHead(201, { "Content-Type": "text/html" });
-            response.end("New todo added");
+            response.end(message);
         }
     });
 };
@@ -95,4 +124,3 @@ module.exports = {
     editTodo,
     handleHome
 };
-
