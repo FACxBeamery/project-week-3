@@ -2,8 +2,6 @@ const path = require("path");
 const rt = require("./router");
 
 const handler = (request, response) => {
-    console.log("method: ", request.method);
-
     const endpoint = request.url;
     const method = request.method;
 
@@ -23,7 +21,7 @@ const handler = (request, response) => {
 };
 
 const routes = {
-    "/todos": [rt.getTodos,"GET"],
+    "/todos": [rt.getTodos, "GET"],
     "/addtodo": [rt.addTodo, "POST"],
     "/removetodo": [rt.removeTodo, "DELETE"],
     "/completetodo": [rt.toggleTodoStatus, "PATCH"],
