@@ -49,7 +49,8 @@ const handler = (request, response) => {
                     id: parsedTodos.length + 1,
                     title: request.headers.title,
                     completed: false,
-                    dateCreated: Date.now()
+                    dateCreated: Date.now(),
+                    dateEdited: Date.now()
                 });
                 fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
                     if (error) {
@@ -98,6 +99,7 @@ const handler = (request, response) => {
                 parsedTodos.map((todoItem) => {
                     if (todoItem.id === Number(id)) {
                         todoItem.completed = true;
+                        todoItem.dateEdited = Date.now();
                     }
                 });
                 fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
@@ -123,6 +125,7 @@ const handler = (request, response) => {
                 parsedTodos.map((todoItem) => {
                     if (todoItem.id === Number(id)) {
                         todoItem.completed = false;
+                        todoItem.dateEdited = Date.now();
                     }
                 });
                 fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
@@ -153,6 +156,10 @@ const handler = (request, response) => {
                     parsedTodos.sort((a, b) => {
                         return new Date(b.dateCreated) - new Date(a.dateCreated);
                     });
+                } else if (sortBy === "latest") {
+                    parsedTodos.sort((a, b) => {
+                        return new Date(b.dateEdited) - new Date(a.dateEdited);
+                    });
                 }
                 fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
                     if (error) {
@@ -178,6 +185,7 @@ const handler = (request, response) => {
                 parsedTodos.map((todoItem) => {
                     if (todoItem.id === Number(id)) {
                         todoItem.title = newTitle;
+                        todoItem.dateEdited = Date.now();
                     }
                 });
                 fs.writeFile(filePath, JSON.stringify(parsedTodos), "utf8", (error) => {
