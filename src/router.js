@@ -1,5 +1,4 @@
 const fs = require("fs");
-const path = require("path");
 const pf = require("../lib/purefunctions");
 
 const readTodoList = (filePath, response, request, endpointCallback) => {
@@ -86,33 +85,13 @@ const handleHome = (response, request, error, file) => {
     response.end(file);
 };
 
-const handler = (request, response) => {
-    const endpoint = request.url;
-    if (endpoint === "/") {
-        const filePath = path.join(__dirname, "..", "public", "index.html");
-        readTodoList(filePath, response, request, handleHome);
-    } else if (endpoint === "/todos") {
-        const filePath = path.join(__dirname, "todos.json");
-        readTodoList(filePath, response, request, getTodos);
-    } else if (endpoint === "/addtodo") {
-        const filePath = path.join(__dirname, "todos.json");
-        readTodoList(filePath, response, request, addTodo);
-    } else if (endpoint === "/removetodo") {
-        const filePath = path.join(__dirname, "todos.json");
-        readTodoList(filePath, response, request, removeTodo);
-    } else if (endpoint === "/completetodo" || endpoint === "/undocompletetodo") {
-        const filePath = path.join(__dirname, "todos.json");
-        readTodoList(filePath, response, request, toggleTodoStatus);
-    } else if (endpoint === "/sorttodos") {
-        const filePath = path.join(__dirname, "todos.json");
-        readTodoList(filePath, response, request, sortTodos);
-    } else if (endpoint === "/edittodo") {
-        const filePath = path.join(__dirname, "todos.json");
-        readTodoList(filePath, response, request, editTodo);
-    } else {
-        response.writeHead(404, { "Content-Type": "text/html" });
-        response.end("<h1>404 Not Found</h1>");
-    }
+module.exports = {
+    readTodoList,
+    getTodos,
+    addTodo,
+    removeTodo,
+    toggleTodoStatus,
+    sortTodos,
+    editTodo,
+    handleHome
 };
-
-module.exports = handler;
