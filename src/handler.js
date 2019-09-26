@@ -11,33 +11,9 @@ const handler = (request, response) => {
         // GET
         const filePath = path.join(__dirname, "..", "public", "index.html");
         rt.readTodoList(filePath, response, request, rt.handleHome);
-    } else if (endpoint === "/todos" && method === "GET") {
-        //GET
+    } else if (routes[endpoint] && routes[endpoint][1] === method) {
         const filePath = path.join(__dirname, "todos.json");
-        rt.readTodoList(filePath, response, request, rt.getTodos);
-    } else if (endpoint === "/addtodo" && method === "POST") {
-        //POST
-        const filePath = path.join(__dirname, "todos.json");
-        rt.readTodoList(filePath, response, request, rt.addTodo);
-    } else if (endpoint === "/removetodo" && method === "DELETE") {
-        //DELETE
-        const filePath = path.join(__dirname, "todos.json");
-        rt.readTodoList(filePath, response, request, rt.removeTodo);
-    } else if (
-        method === "PATCH" &&
-        (endpoint === "/completetodo" || endpoint === "/undocompletetodo")
-    ) {
-        // PATCH
-        const filePath = path.join(__dirname, "todos.json");
-        rt.readTodoList(filePath, response, request, rt.toggleTodoStatus);
-    } else if (endpoint === "/sorttodos" && method === "PATCH") {
-        // PATCH
-        const filePath = path.join(__dirname, "todos.json");
-        rt.readTodoList(filePath, response, request, rt.sortTodos);
-    } else if (endpoint === "/edittodo" && method === "PATCH") {
-        // PATCH
-        const filePath = path.join(__dirname, "todos.json");
-        rt.readTodoList(filePath, response, request, rt.editTodo);
+        rt.readTodoList(filePath, response, request, routes[endpoint][0]);
     } else {
         response.writeHead(404, { "Content-Type": "text/html" });
         response.end(
@@ -46,4 +22,13 @@ const handler = (request, response) => {
     }
 };
 
+const routes = {
+    "/todos": [rt.getTodos,"GET"],
+    "/addtodo": [rt.addTodo, "POST"],
+    "/removetodo": [rt.removeTodo, "DELETE"],
+    "/completetodo": [rt.toggleTodoStatus, "PATCH"],
+    "/undocompletetodo": [rt.toggleTodoStatus, "PATCH"],
+    "/sorttodos": [rt.sortTodos, "PATCH"],
+    "/edittodo": [rt.editTodo, "PATCH"]
+};
 module.exports = handler;
