@@ -57,7 +57,7 @@ const toggleTodoStatus = (response, request, error, file, filePath) => {
     const id = request.headers.id;
     let parsedTodos = JSON.parse(file);
     const newStatus = request.url === "/completetodo";
-    parsedTodos = pf.toggleItemStatus(parsedTodos, id, newStatus, date.Now());
+    parsedTodos = pf.toggleItemStatus(parsedTodos, id, newStatus, Date.now());
 
     writeTodoList(
         filePath,
