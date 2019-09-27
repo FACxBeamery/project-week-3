@@ -90,10 +90,10 @@ const sortTodos = (response, request, error, file, filePath) => {
     const sortBy = request.headers.sortby;
     let parsedTodos = JSON.parse(file);
     parsedTodos = pf.sortArray(parsedTodos, sortBy);
-    if (sortBy !== "date" && sortBy !== "latest" && sortBy !== "status") {
+    if (sortBy !== "date" && sortBy !== "recentedited" && sortBy !== "status") {
         response.writeHead(400, { "Content-Type": "text/html" });
         response.end(
-            "Incorrect header value <sortby>. Please try again. E.g. date, latest, or status"
+            "Incorrect header value <sortby>. Please try again. E.g. date, recentedited, or status"
         );
     } else {
         writeTodoList(
