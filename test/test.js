@@ -183,6 +183,8 @@ test("testing item is added to array", function(t) {
 	t.end();
 });
 
+test;
+
 test("Testing remove item from array", function(t) {
 	const actual = pf.removeFromArray(dummyTodosList, 1);
 	const expected = [
