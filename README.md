@@ -50,6 +50,10 @@ METHOD: PATCH
 HEADERS: `id` and `title`
 RESPONSE: `<custom message>`
 
+# Software Architecture diagram
+
+https://pdfhost.io/v/SZWGtIpx3_softwarearchitecturepdf.pdf
+
 # How to run it locally
 
 -   clone the repo
