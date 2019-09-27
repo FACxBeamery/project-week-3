@@ -1,17 +1,17 @@
 const path = require("path");
-const h = require("./handler");
+const handler = require("./handler");
 
-const handler = (request, response) => {
+const router = (request, response) => {
     const endpoint = request.url;
     const method = request.method;
 
     if (endpoint === "/" && method === "GET") {
         // GET
         const filePath = path.join(__dirname, "..", "public", "index.html");
-        h.readTodoList(filePath, response, request, h.handleHome);
+        handler.readTodoList(filePath, response, request, handler.handleHome);
     } else if (routes[endpoint] && routes[endpoint][1] === method) {
         const filePath = path.join(__dirname, "todos.json");
-        h.readTodoList(filePath, response, request, routes[endpoint][0]);
+        handler.readTodoList(filePath, response, request, routes[endpoint][0]);
     } else {
         response.writeHead(404, { "Content-Type": "text/html" });
         response.end(
@@ -21,12 +21,12 @@ const handler = (request, response) => {
 };
 
 const routes = {
-    "/todos": [h.getTodos, "GET"],
-    "/addtodo": [h.addTodo, "POST"],
-    "/removetodo": [h.removeTodo, "DELETE"],
-    "/completetodo": [h.toggleTodoStatus, "PATCH"],
-    "/undocompletetodo": [h.toggleTodoStatus, "PATCH"],
-    "/sorttodos": [h.sortTodos, "PATCH"],
-    "/edittodo": [h.editTodo, "PATCH"]
+    "/todos": [handler.getTodos, "GET"],
+    "/addtodo": [handler.addTodo, "POST"],
+    "/removetodo": [handler.removeTodo, "DELETE"],
+    "/completetodo": [handler.toggleTodoStatus, "PATCH"],
+    "/undocompletetodo": [handler.toggleTodoStatus, "PATCH"],
+    "/sorttodos": [handler.sortTodos, "PATCH"],
+    "/edittodo": [handler.editTodo, "PATCH"]
 };
-module.exports = handler;
+module.exports = router;
