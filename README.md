@@ -1,10 +1,9 @@
-# Project Week 3: Node.JS server
+# Project Week 3: Node.JS server 
+## by João, Lyndsey and Martha
 
-## by João, Lyndsey, and Martha
 
 ## Motivation
-
-The purpose of this project was to create our own Node.JS http server with the npm core modules: `http`, `path`, and `fs`. The server provides a RESTful API for a To Do List app.
+The purpose of this project was to create our own Node.JS http server with the npm core modules: `http`, `path`, and `fs`. The server provides a RESTful API for a To Do List app. 
 
 ## POSTMAN collection
 
@@ -16,13 +15,14 @@ https://www.getpostman.com/collections/eec2558a9e8109216d8e
 METHOD: GET
 RESPONSE: index.html
 
+
 `/todos`
 METHOD: GET
 RESPONSE: JSON file todos.json
 
 `/addtodo`
 METHOD: POST
-HEADERS: `title`
+HEADERS: `title` 
 RESPONSE: `<custom message>`
 
 `/removetodo`
@@ -40,26 +40,24 @@ METHOD: PATCH
 HEADERS: `id`
 RESPONSE: `<custom message>`
 
-`/sorttodos`
+`/sorttodos` 
 METHOD: PATCH
-HEADERS: `sortby` (can be 'date', 'recentedited', or 'status')
-RESPONSE: `<custom message>`
+HEADERS: `sortby` (can be 'date', 'latest', or 'status')
+RESPONSE: `<custom message>` 
 
 `/edittodo`
 METHOD: PATCH
 HEADERS: `id` and `title`
 RESPONSE: `<custom message>`
 
-# Software Architecture diagram
-
-https://pdfhost.io/v/SZWGtIpx3_softwarearchitecturepdf.pdf
-
 # How to run it locally
 
--   clone the repo
--   run the following:
-    `npm install`
-    `npm run start`
-
--   for testing:
+- clone the repo
+- run the following: 
+  `npm install `
+  `npm run start`
+  
+- for testing:
     `npm run test`
+![](https://i.imgur.com/tBWExSW.png)
+
