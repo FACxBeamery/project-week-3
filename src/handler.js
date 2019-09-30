@@ -109,13 +109,13 @@ const sortTodos = (response, request, error, file, filePath) => {
 const editTodo = (response, request, error, file, filePath) => {
     const id = request.headers.id;
     const newTitle = request.headers.title;
+    let parsedTodos = JSON.parse(file);
 
     if (!checkIfIDExists(parsedTodos, id) || !newTitle) {
         response.writeHead(400, { "Content-Type": "text/html" });
         response.end("Could not find to do with that id/title header was empty. Please try again");
     } else {
-        let parsedTodos = JSON.parse(file);
-        parsedTodos = pf.editArray(parsedTodos, id, newTitle, date.Now());
+        parsedTodos = pf.editArray(parsedTodos, id, newTitle, Date.now());
 
         writeTodoList(
             filePath,
