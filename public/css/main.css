@@ -1,3 +1,77 @@
+html,
+body {
+	font-family: "Open Sans", sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+/**
+$govuk-spacing-scale-1: 5px;
+$govuk-spacing-scale-2: 10px;
+$govuk-spacing-scale-3: 15px;
+$govuk-spacing-scale-4: 20px;
+$govuk-spacing-scale-5: 25px;
+$govuk-spacing-scale-6: 30px;
+$govuk-spacing-scale-7: 40px;
+$govuk-spacing-scale-8: 50px;
+$govuk-spacing-scale-9: 60px;
+**/
+
+.my-1 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.my-2 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.my-3 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.my-4 {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.my-5 {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.my-6 {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.header {
+}
+
+.header__title {
+}
+
+.main {
+}
+
+.form {
+}
+
+.form__input {
+}
+
+.form__button {
+}
+
+.section {
+}
+
+.section__title {
+}
+
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
