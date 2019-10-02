@@ -6,17 +6,15 @@ const addTodo = require("./handlers/addTodo");
 const removeTodo = require("./handlers/removeTodo");
 const editTodo = require("./handlers/editTodo");
 
-const todosJSON = path.join(__dirname, "todos.json");
-
-// router.use(express.static(path.join(__dirname, "..", "public")));
+router.use(express.static(path.join(__dirname, "..", "public")));
 
 router.get("/todos", getTodos);
 
-// router.post("/todos", addTodo);
+router.post("/todos", addTodo);
 
-// router.delete("/todos/todo/:id", removeTodo);
+router.delete("/todos/todo/:id", removeTodo);
 
-// router.patch("/todos/todo/:id", editTodo);
+router.patch("/todos/todo/:id", editTodo);
 
 // const router = (request, response) => {
 //     const endpoint = request.url;
