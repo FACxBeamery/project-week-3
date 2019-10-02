@@ -1,18 +1,22 @@
 const express = require("express");
 const router = express();
 const path = require("path");
-const handler = require("./handlers");
+const getTodos = require("./handlers/getTodos");
+const addTodo = require("./handlers/addTodo");
+const removeTodo = require("./handlers/removeTodo");
+const editTodo = require("./handlers/editTodo");
+
 const todosJSON = path.join(__dirname, "todos.json");
 
-router.use(express.static(path.join(__dirname, "..", "public")));
+// router.use(express.static(path.join(__dirname, "..", "public")));
 
-router.get("/todos", handler.getTodos);
+router.get("/todos", (req, res) => console.log(req));
 
-router.post("/todos", handler.addTodo);
+// router.post("/todos", addTodo);
 
-router.delete("/todos/todo/:id", handler.removeTodo);
+// router.delete("/todos/todo/:id", removeTodo);
 
-router.patch("/todos/todo/:id", handler.editTodo);
+// router.patch("/todos/todo/:id", editTodo);
 
 // const router = (request, response) => {
 //     const endpoint = request.url;

@@ -1,8 +1,11 @@
+const pf = require("../../lib/purefunctions");
 const readFile = require("../../lib/utilFunctions").readFile;
 const writeFile = require("../../lib/utilFunctions").writeFile;
 
 const getTodos = (req, res) => {
+    console.log("hey ");
     readFile(req, res, () => {
+        console.log("reading file");
         res.writeHead(200, { "Content-Type": "application/json" });
         const sortBy = req.params.sortBy;
         let parsedTodos = JSON.parse(file);
@@ -10,8 +13,8 @@ const getTodos = (req, res) => {
             sortBy = "status";
         }
         parsedTodos = pf.sortArray(parsedTodos, sortBy);
-
-        writeFile(JSON.stringify(parsedTodos), response, `Todos have been sorted by ${sortBy}`);
+        console.log(parsedTodos);
+        res.end(JSON.stringify(parsedTodos));
     });
 };
 

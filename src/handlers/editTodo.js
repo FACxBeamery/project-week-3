@@ -1,4 +1,5 @@
-const pf = require("../lib/purefunctions");
+const pf = require("../../lib/purefunctions");
+const readFile = require("../../lib/utilFunctions").readFile;
 const writeFile = require("../../lib/utilFunctions").writeFile;
 
 const editTodo = (req, res) => {

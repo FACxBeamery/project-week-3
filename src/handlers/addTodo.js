@@ -1,4 +1,4 @@
-const pf = require("../lib/purefunctions");
+const pf = require("../../lib/purefunctions");
 const writeFile = require("../../lib/utilFunctions").writeFile;
 const readFile = require("../../lib/utilFunctions").readFile;
 
