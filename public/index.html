@@ -1,9 +1,42 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Document</title>
-    </head>
-    <body></body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="./css/main.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<header>
+			<h1>TODO APP</h1>
+		</header>
+		<main>
+			<form action="">
+				<input
+					type="text"
+					placeholder="add a new todo"
+					id="todo-title"
+				/>
+				<button type="submit" id="new-todo-button">ADD</button>
+			</form>
+			<section>
+				<h2>Todos</h2>
+				<div id="filters-container"></div>
+
+				<div id="todos-container"></div>
+			</section>
+
+			<div id="modal-box" class="modal">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<p>Are u sure u want to delet ethis forever?????</p>
+					<button type="submit" id="delete-item">YES</button>
+					<button type="submit" id="go-back">NO HELP</button>
+				</div>
+			</div>
+		</main>
+		<footer></footer>
+	</body>
+	<script src="js/index.js"></script>
 </html>
