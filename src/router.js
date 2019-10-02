@@ -10,7 +10,7 @@ const todosJSON = path.join(__dirname, "todos.json");
 
 // router.use(express.static(path.join(__dirname, "..", "public")));
 
-router.get("/todos", (req, res) => console.log(req));
+router.get("/todos", getTodos);
 
 // router.post("/todos", addTodo);
 
