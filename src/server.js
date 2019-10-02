@@ -6,7 +6,7 @@ const router = require("./router.js");
 
 const port = 3000;
 
-app.use(formidable);
+app.use(formidable());
 app.use(router);
 
 app.listen(port, () => {
