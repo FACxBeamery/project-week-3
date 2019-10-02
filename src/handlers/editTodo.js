@@ -18,11 +18,11 @@ const editTodo = (req, res) => {
             parsedTodos = pf.editArray(parsedTodos, id, newTitle, Date.now());
         } else if (editMethod === "completeTodo") {
             parsedTodos = pf.toggleItemStatus(parsedTodos, id, true, Date.now());
-        } else if (editMethod === "undocompleteTodo") {
+        } else if (editMethod === "undoCompleteTodo") {
             parsedTodos = pf.toggleItemStatus(parsedTodos, id, false, Date.now());
         }
 
-        writeFile(JSON.stringify(parsedTodos), response, `todo with id: ${id} has been edited`);
+        writeFile(JSON.stringify(parsedTodos), res, `todo with id: ${id} has been edited`);
     });
 };
 

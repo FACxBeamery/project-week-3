@@ -1,6 +1,7 @@
 const pf = require("../../lib/purefunctions");
 const writeFile = require("../../lib/utilFunctions").writeFile;
 const readFile = require("../../lib/utilFunctions").readFile;
+const uuid = require("uuid/v4");
 
 const addTodo = (req, res) => {
     // read file
@@ -8,16 +9,17 @@ const addTodo = (req, res) => {
         let parsedTodos = JSON.parse(file);
         // then get body title and check  if its empty
         const newTodo = {
-            id: 12,
+            id: uuid(),
             title: req.fields.title,
             completed: false,
             dateCreated: Date.now(),
             dateEdited: Date.now()
         };
         parsedTodos = pf.addToArray(parsedTodos, newTodo);
+        console.log(parsedTodos);
         writeFile(
             JSON.stringify(parsedTodos),
-            response,
+            res,
             `todo with id: ${newTodo.id} has been added successfully`
         );
     });

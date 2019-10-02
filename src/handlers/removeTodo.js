@@ -2,16 +2,16 @@ const pf = require("../../lib/purefunctions");
 const readFile = require("../../lib/utilFunctions").readFile;
 const writeFile = require("../../lib/utilFunctions").writeFile;
 
-const removeTodo = (response, request, error, file, filePath) => {
+const removeTodo = (req, res) => {
     // get the id
-
+    console.log("params", req.params);
     const id = req.params.id;
-
+    console.log("id", typeof id);
     readFile(req, res, (file) => {
         let parsedTodos = JSON.parse(file);
+        console.log("todos", parsedTodos);
         parsedTodos = pf.removeFromArray(parsedTodos, id);
-
-        writeFile(JSON.stringify(parsedTodos), response, `todo with id: ${id} has been removed`);
+        writeFile(JSON.stringify(parsedTodos), res, `todo with id: ${id} has been removed`);
     });
 
     // const id = request.headers.id;
