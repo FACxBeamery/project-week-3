@@ -4,13 +4,15 @@ const formidable = require("express-formidable");
 
 const router = require("./router.js");
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(formidable());
 app.use(router);
 
 app.listen(port, () => {
-    console.log(`Server is listening on port http://localhost:${port} ready to accept requests!`);
+	console.log(
+		`Server is listening on port http://localhost:${port} ready to accept requests!`
+	);
 });
 
 // debug straightaway
