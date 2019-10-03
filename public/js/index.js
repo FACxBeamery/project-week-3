@@ -206,16 +206,33 @@ const addTodo = (target) => {
     })
         .then((res) => {
             if (!res.ok) {
+                addWarningStyling(document.getElementById("todo-title"));
+                addWarningMessageBelow(document.getElementById("form"));
                 throw new Error("Title is empty");
             }
         })
         .then(() => {
+            document.getElementById("todo-title").classList.remove("form__input--warning");
+            document.querySelector(".warning").innerHTML = "";
             resetTodosContainer();
             getTodos("/todos");
         })
         .catch((err) => {
             console.log(err);
         });
+};
+
+const addWarningStyling = (element) => {
+    element.classList.add("form__input--warning");
+};
+
+const addWarningMessageBelow = (element) => {
+    const p = document.createElement("p");
+    const text = document.createTextNode("This field is required.");
+    p.appendChild(text);
+    p.classList.add("warning");
+
+    element.parentNode.insertBefore(p, element.nextSibling);
 };
 
 const modalBox = (todoID) => {
@@ -228,8 +245,8 @@ const modalBox = (todoID) => {
     document.getElementById("remove-question").textContent =
         "Are u sure u want to remove this todo?";
     document.getElementById("remove-question").style.fontSize = "1rem";
-    deleteButton.style.display = "block";
-    undoButton.style.display = "block";
+    deleteButton.style.display = "inline-block";
+    undoButton.style.display = "inline-block";
 
     const deleteItem = (e) => {
         e.preventDefault();
