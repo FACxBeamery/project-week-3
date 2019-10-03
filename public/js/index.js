@@ -1,9 +1,16 @@
-const getTodos = (url) => {
-    fetch(url, {
-        method: "GET"
+const getTodos = (url, method) => {
+    console.log("url", `${url}${method ? "/" + method : ""}`);
+    console.log("method", method);
+
+    fetch(`${url}${method ? "/" + method : ""}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
     })
         .then((res) => {
             res.json().then((json) => {
+                resetTodosContainer();
                 //target the todos container
                 // do a for each and render each to do
                 addTodosToPage(json);
@@ -115,6 +122,11 @@ const editTodo = (e) => {
         // and edit todo title
     }
 };
+
+document.getElementById("sortby").addEventListener("change", (e) => {
+    const sortMethod = e.target.value;
+    getTodos("/todos", sortMethod);
+});
 
 const addTodosToPage = (todos) => {
     const todosContainer = document.getElementById("todos-container");

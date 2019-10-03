@@ -9,6 +9,7 @@ const editTodo = require("./handlers/editTodo");
 router.use(express.static(path.join(__dirname, "..", "public")));
 
 router.get("/todos", getTodos);
+router.get("/todos/:sort_method", getTodos);
 
 router.post("/todos", addTodo);
 
