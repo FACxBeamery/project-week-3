@@ -51,7 +51,7 @@ const toggleTodoStatus = (e) => {
 };
 
 const removeTodo = (todoID) => {
-    fetch(`/todos/todo/?id=${todoID}`, {
+    fetch(`/todos/todo/${todoID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -179,7 +179,6 @@ document.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove-button")) {
         e.preventDefault();
         const id = e.target.parentNode.id;
-
         modalBox(e.target.parentNode.id);
     }
 });
@@ -229,7 +228,7 @@ const modalBox = (todoID) => {
     deleteButton.style.display = "block";
     undoButton.style.display = "block";
 
-    deleteButton.addEventListener("click", (e) => {
+    const deleteItem = (e) => {
         e.preventDefault();
         document.getElementById("remove-question").textContent = "Todo successfully deleted!";
         document.getElementById("remove-question").style.fontSize = "1.5rem";
@@ -239,8 +238,11 @@ const modalBox = (todoID) => {
             e.preventDefault();
             modal.style.display = "none";
             removeTodo(todoID);
-        }, 1500);
-    });
+        }, 600);
+        deleteButton.removeEventListener("click", deleteItem);
+    };
+
+    deleteButton.addEventListener("click", deleteItem);
 
     span.addEventListener("click", () => {
         modal.style.display = "none";
