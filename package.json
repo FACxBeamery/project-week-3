@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "node test/test.js",
-		"start": "src/server.js",
+		"start": "node src/server.js",
 		"coverage": "nyc npm run test",
 		"dev:start": "nodemon src/server.js"
 	},
