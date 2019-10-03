@@ -4,10 +4,12 @@ const writeFile = require("../../lib/utilFunctions").writeFile;
 
 const removeTodo = (req, res) => {
     // get the id
-    console.log("this is the params", req.params);
+    // console.log("hello");
 
+    console.log("this is the params", req.params);
+    // console.log("this is the query", req.query);
     const id = req.params.id;
-    console.log(id);
+    // console.log(id);
 
     if (id) {
         readFile(req, res, (file) => {
