@@ -23,7 +23,12 @@ const removeTodo = (req, res) => {
             } else {
                 console.log("in array");
                 parsedTodos = pf.removeFromArray(parsedTodos, id);
-                writeFile(JSON.stringify(parsedTodos), res, `todo with id: ${id} has been removed`);
+                writeFile(
+                    JSON.stringify(parsedTodos),
+                    res,
+                    `todo with id: ${id} has been removed`,
+                    204
+                );
             }
         });
     }
