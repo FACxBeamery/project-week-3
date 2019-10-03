@@ -13,10 +13,7 @@ const editTodo = (req, res) => {
         const idInArray = parsedTodos.some((todoObjs) => todoObjs.id === id);
         if (!idInArray) {
             return res.status(400).end();
-        }
-        // DONT forget to add custom message
-        // then get body title and check  if its empty
-        else {
+        } else {
             if (editMethod === "editTitle") {
                 const newTitle = req.fields.title;
                 parsedTodos = pf.editArray(parsedTodos, id, newTitle, Date.now());

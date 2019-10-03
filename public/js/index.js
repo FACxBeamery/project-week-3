@@ -1,7 +1,4 @@
 const getTodos = (url, method) => {
-    console.log("url", `${url}${method ? "/" + method : ""}`);
-    console.log("method", method);
-
     fetch(`${url}${method ? "/" + method : ""}`, {
         method: "GET",
         headers: {
@@ -11,8 +8,6 @@ const getTodos = (url, method) => {
         .then((res) => {
             res.json().then((json) => {
                 resetTodosContainer();
-                //target the todos container
-                // do a for each and render each to do
                 addTodosToPage(json);
             });
         })
@@ -37,7 +32,6 @@ const resetTodosContainer = () => {
 
 const toggleTodoStatus = (e) => {
     const todoID = e.target.parentNode.parentNode.id;
-    // console.log(todoID);
 
     fetch(`/todos/todo/${todoID}`, {
         method: "PATCH",
@@ -117,9 +111,6 @@ const editTodo = (e) => {
             .catch((err) => {
                 console.log(err);
             });
-
-        // get p text content
-        // and edit todo title
     }
 };
 
@@ -148,7 +139,7 @@ const renderTodo = (todo) => {
 
     checkboxWrapper.appendChild(checkbox);
     checkboxWrapper.appendChild(checkboxSpan);
-    // add an event listener
+
     if (todo.completed) {
         checkbox.checked = true;
         todoWrapper.classList.add("todo-wrapper--complete");
@@ -165,14 +156,14 @@ const renderTodo = (todo) => {
     title.classList.add("todo__title");
 
     const editButton = document.createElement("button");
-    // add an event listener
+
     editButton.innerHTML = "edit";
     editButton.addEventListener("click", editTodo);
 
     editButton.classList.add("todo__button--edit");
 
     const removeButton = document.createElement("button");
-    // add an event listener
+
     removeButton.innerHTML = "remove";
     removeButton.classList.add("remove-button");
     removeButton.classList.add("todo__button--remove");
@@ -231,8 +222,8 @@ const modalBox = (todoID) => {
     const modal = document.getElementById("modal-box");
     const deleteButton = document.getElementById("delete-item");
     const undoButton = document.getElementById("go-back");
-    // Get the <span> element that closes the modal
     const span = document.getElementsByClassName("close")[0];
+
     modal.style.display = "block";
     document.getElementById("remove-question").textContent =
         "Are u sure u want to remove this todo?";
