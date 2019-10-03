@@ -29,7 +29,8 @@ const resetTodosContainer = () => {
 };
 
 const toggleTodoStatus = (e) => {
-    const todoID = e.target.parentNode.id;
+
+    const todoID = e.target.parentNode.parentNode.id;
     // console.log(todoID);
 
     fetch(`/todos/todo/${todoID}`, {
@@ -50,7 +51,9 @@ const toggleTodoStatus = (e) => {
         });
 };
 
+
 const removeTodo = (todoID) => {
+
     fetch(`/todos/todo/${todoID}`, {
         method: "DELETE",
         headers: {
@@ -64,11 +67,13 @@ const removeTodo = (todoID) => {
             }
         })
         .then(() => {
+
             resetTodosContainer();
             getTodos("/todos");
         })
         .catch((err) => {
             console.log(err);
+
         });
 };
 
@@ -79,9 +84,12 @@ const editTodo = (e) => {
     if (e.target.innerHTML === "edit") {
         e.target.innerHTML = "save";
         todoTitle.contentEditable = "true";
+
+        todoTitle.classList.add("todo__title--active");
     } else if (e.target.innerHTML == "save") {
         e.target.innerHTML = "edit";
         todoTitle.contentEditable = "false";
+        todoTitle.classList.remove("todo__title--active");
         const pContent = todoTitle.textContent;
 
         fetch(`/todos/todo/${todoID}`, {
@@ -95,16 +103,19 @@ const editTodo = (e) => {
             })
         })
             .then((res) => {
+
                 if (!res.ok) {
                     throw new Error("Edit query invalid");
                 }
             })
             .then(() => {
+
                 resetTodosContainer();
                 getTodos("/todos");
             })
             .catch((err) => {
                 console.log(err);
+
             });
 
         // get p text content
@@ -120,11 +131,22 @@ const addTodosToPage = (todos) => {
 const renderTodo = (todo) => {
     const todoWrapper = document.createElement("form");
     todoWrapper.setAttribute("id", todo.id);
+
+    const checkboxWrapper = document.createElement("label");
+    checkboxWrapper.classList.add("container");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.classList.add("checkbox");
+
+    const checkboxSpan = document.createElement("span");
+    checkboxSpan.classList.add("checkmark");
+
+    checkboxWrapper.appendChild(checkbox);
+    checkboxWrapper.appendChild(checkboxSpan);
     // add an event listener
     if (todo.completed) {
         checkbox.checked = true;
+        todoWrapper.classList.add("todo-wrapper--complete");
     }
     checkbox.addEventListener("change", toggleTodoStatus);
 
@@ -135,25 +157,29 @@ const renderTodo = (todo) => {
         title.contentEditable = "false";
     }
 
+    title.classList.add("todo__title");
+
+
     const editButton = document.createElement("button");
     // add an event listener
     editButton.innerHTML = "edit";
     editButton.addEventListener("click", editTodo);
 
+    editButton.classList.add("todo__button--edit");
+
     const removeButton = document.createElement("button");
-    removeButton.classList.add("remove-button");
     // add an event listener
     removeButton.innerHTML = "remove";
-    // removeButton.addEventListener("click", (e) => {
-    //     e.preventDefault();
-    //     modalBox(e);
-    // });
+   
+    removeButton.classList.add("todo__button--remove");
 
-    todoWrapper.appendChild(checkbox);
+    todoWrapper.appendChild(checkboxWrapper);
     todoWrapper.appendChild(title);
     todoWrapper.appendChild(editButton);
     todoWrapper.appendChild(removeButton);
-    console.log(todo);
+    todoWrapper.classList.add("flex-center");
+    todoWrapper.classList.add("todo-wrapper");
+    todoWrapper.classList.add("my-3");
     return todoWrapper;
 };
 
@@ -198,7 +224,9 @@ const addTodo = (target) => {
         });
 };
 
-const modalBox = (todoID) => {
+
+const modalBox = (e) => {
+
     const modal = document.getElementById("modal-box");
     modal.style.display = "block";
 
@@ -206,15 +234,24 @@ const modalBox = (todoID) => {
     const undoButton = document.getElementById("go-back");
     // Get the <span> element that closes the modal
     const span = document.getElementsByClassName("close")[0];
+    deleteButton.addEventListener("click", () => {
+        document.getElementById("remove-question").textContent = "Todo successfully deleted!";
+        document.getElementById("remove-question").style.fontSize = "1.5rem";
+        deleteButton.style.display = "none";
+        undoButton.style.display = "none";
+        setTimeout(() => {
+          e.preventDefault();
+            modal.style.display = "none";
+            removeTodo(todoID);
+        }, 1500);
+    });
 
-    deleteButton.addEventListener("click", (e) => {
-        e.preventDefault();
+    span.addEventListener("click", () => {
         modal.style.display = "none";
-        removeTodo(todoID);
     });
 
     undoButton.addEventListener("click", () => {
-        e.preventDefault();
+
         modal.style.display = "none";
     });
 };
