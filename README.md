@@ -2,7 +2,7 @@
 
 # Project Week 4: TO DO APP 
 
-<a href="https://ibb.co/kmDw5Dd"><img src="https://i.ibb.co/cY8Zk8m/screencapture-todolist-ls-ml-jv-herokuapp-2019-10-04-13-31-09.png" alt="screencapture-todolist-ls-ml-jv-herokuapp-2019-10-04-13-31-09" border="0"></a><br />
+<a href="https://ibb.co/kmDw5Dd"><img src="https://i.ibb.co/DrMvzMq/screencapture-todolist-ls-ml-jv-herokuapp-2019-10-04-13-31-09.png" alt="screencapture-todolist-ls-ml-jv-herokuapp-2019-10-04-13-31-09" border="0"></a><br />
 ## by João, Lyndsey and Martha
 [![Build Status](https://travis-ci.org/FACxBeamery/project-week-3.svg?branch=master)](https://travis-ci.org/FACxBeamery/project-week-3)
 
