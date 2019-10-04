@@ -62,11 +62,13 @@ xs	$spacing-xs	0.5rem - 8px
 }
 
 .header {
-    background-image: url(https://assets-ouch.icons8.com/preview/213/b7dd1810-69ec-4975-97a4-940fa81ff552.png);
-    background-position: 103% 33%;
-    background-repeat: no-repeat;
-    background-size: 50% auto;
-    height: 30vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header__image {
+	height: 40vh;
 }
 
 .header__title {
@@ -334,10 +336,10 @@ xs	$spacing-xs	0.5rem - 8px
         align-items: center;
     }
 
-    .header {
-        background-position: 103% 53%;
-        height: 40vh;
-    }
+	.form__button {
+		margin-top: 0.5rem;
+	}
+
 }
 
 @media only screen and (max-width: 700px) {
