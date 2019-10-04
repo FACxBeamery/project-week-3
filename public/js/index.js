@@ -27,7 +27,11 @@ if (document.readyState != "loading") {
 }
 
 const resetTodosContainer = () => {
-	document.getElementById("todos-container").innerHTML = "";
+	const todosContainer = document.getElementById("todos-container");
+	const todos = todosContainer.childNodes;
+	for (let i = 0; i < todos.length; i++) {
+		todosContainer.removeChild(todos[i]);
+	}
 };
 
 const toggleTodoStatus = e => {
@@ -78,13 +82,13 @@ const editTodo = e => {
 	const todoID = e.target.parentNode.id;
 	const todoTitle = e.target.previousSibling;
 	e.preventDefault();
-	if (e.target.innerHTML === "edit") {
-		e.target.innerHTML = "save";
+	if (e.target.textContent === "edit") {
+		e.target.textContent = "save";
 		todoTitle.contentEditable = "true";
 
 		todoTitle.classList.add("todo__title--active");
-	} else if (e.target.innerHTML == "save") {
-		e.target.innerHTML = "edit";
+	} else if (e.target.textContent == "save") {
+		e.target.textContent = "edit";
 		todoTitle.contentEditable = "false";
 		todoTitle.classList.remove("todo__title--active");
 		const pContent = todoTitle.textContent;
@@ -157,14 +161,14 @@ const renderTodo = todo => {
 
 	const editButton = document.createElement("button");
 
-	editButton.innerHTML = "edit";
+	editButton.textContent = "edit";
 	editButton.addEventListener("click", editTodo);
 
 	editButton.classList.add("todo__button--edit");
 
 	const removeButton = document.createElement("button");
 
-	removeButton.innerHTML = "remove";
+	removeButton.textContent = "remove";
 	removeButton.classList.add("remove-button");
 	removeButton.classList.add("todo__button--remove");
 
@@ -195,33 +199,33 @@ const addTodo = target => {
 	const newTodoTitle = document.getElementById("todo-title").value;
 	document.getElementById("todo-title").value = "";
 
-	fetch(`/todos`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json"
-		},
-		body: JSON.stringify({
-			title: newTodoTitle
+	if (newTodoTitle) {
+		fetch(`/todos`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				title: newTodoTitle
+			})
 		})
-	})
-		.then(res => {
-			if (!res.ok) {
-				addWarningStyling(document.getElementById("todo-title"));
-				addWarningMessageBelow(document.getElementById("form"));
-				throw new Error("Title is empty");
-			}
-		})
-		.then(() => {
-			resetForm();
-			// if
-			// document.getElementById("todo-title").classList.remove("form__input--warning");
-			// document.querySelector(".warning").innerHTML = "";
-			resetTodosContainer();
-			getTodos("/todos");
-		})
-		.catch(err => {
-			console.log(err);
-		});
+			.then(res => {
+				if (!res.ok) {
+					addWarningStyling(document.getElementById("todo-title"));
+					addWarningMessageBelow(document.getElementById("form"));
+					throw new Error("Title is empty");
+				}
+			})
+			.then(() => {
+				resetForm();
+
+				resetTodosContainer();
+				getTodos("/todos");
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
 };
 
 const resetForm = () => {
@@ -231,7 +235,7 @@ const resetForm = () => {
 			.classList.remove("form__input--warning");
 	}
 	if (document.querySelector(".warning")) {
-		document.querySelector(".warning").innerHTML = "";
+		document.querySelector(".warning").textContent = "";
 	}
 };
 
