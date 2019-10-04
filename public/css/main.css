@@ -7,45 +7,47 @@ body {
 }
 
 /**
-$govuk-spacing-scale-1: 5px;
-$govuk-spacing-scale-2: 10px;
-$govuk-spacing-scale-3: 15px;
-$govuk-spacing-scale-4: 20px;
-$govuk-spacing-scale-5: 25px;
-$govuk-spacing-scale-6: 30px;
-$govuk-spacing-scale-7: 40px;
-$govuk-spacing-scale-8: 50px;
-$govuk-spacing-scale-9: 60px;
+Name	Token (example)	Size
+4xl	$spacing-4xl	4rem - 64px
+3xl	$spacing-3xl	3rem - 48px
+2xl	$spacing-2xl	2.5rem - 2.5rem
+xl	$spacing-xl	2rem - 32px
+l	$spacing-lg	1.5rem - 24px
+m	$spacing-md	1rem - 16px
+s	$spacing-sm	0.75rem - 12px
+xs	$spacing-xs	0.5rem - 8px
+2xs	$spacing-2xs	0.25rem - 4px
+
 **/
 
 .my-1 {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 0.75rem;
+	margin-bottom: 0.75rem;
 }
 
 .my-2 {
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 .my-3 {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 .my-4 {
-	margin-top: 25px;
-	margin-bottom: 25px;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
 }
 
 .my-5 {
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
 
 .my-6 {
-	margin-top: 40px;
-	margin-bottom: 40px;
+	margin-top: 2.5rem;
+	margin-bottom: 2.5rem;
 }
 
 .header {
@@ -79,16 +81,16 @@ $govuk-spacing-scale-9: 60px;
 	width: 65vw;
 	font-size: 2rem;
 	border: none;
-	border: 3px solid #8493ff;
-	margin-right: 20px;
+	border: 0.25rem solid #8493ff;
+	margin-right: 1.5rem;
 	color: #333;
 	padding: 0.5rem;
-	box-shadow: 4px 5px 0px #bdff92;
+	box-shadow: 0.25rem 0.25rem 0rem #bdff92;
 }
 
 .form__input--warning {
-	border: 3px solid indianred;
-	box-shadow: 4px 5px 0px indianred;
+	border: 0.25rem solid indianred;
+	box-shadow: 0.25rem 0.25rem 0rem indianred;
 }
 
 .form__button {
@@ -108,7 +110,7 @@ $govuk-spacing-scale-9: 60px;
 .todo__title {
 	text-align: left;
 	width: 50vw;
-	margin-right: 20px;
+	margin-right: 1.5rem;
 	padding: 0.5rem 0.5rem 0 0;
 	overflow: scroll;
 	height: 5vh;
@@ -117,14 +119,14 @@ $govuk-spacing-scale-9: 60px;
 	align-items: center;
 }
 .todo__title--active {
-	border: 1px solid #94a1ff;
+	border: 0.125rem solid #94a1ff;
 }
 
 .todo__button--remove {
-	border: 0.1rem solid rgb(228, 105, 105);
-	margin-left: 10px;
+	border: 0.125rem solid rgb(228, 105, 105);
+	margin-left: 0.75rem;
 	font-weight: 300;
-	font-size: 0.8rem;
+	font-size: 0.75rem;
 	transition: background 0.3s;
 }
 
@@ -134,9 +136,9 @@ $govuk-spacing-scale-9: 60px;
 }
 
 .todo__button--edit {
-	border: 0.1rem solid rgb(82, 149, 224);
+	border: 0.125rem solid rgb(82, 149, 224);
 	font-weight: 300;
-	font-size: 0.8rem;
+	font-size: 0.75rem;
 	transition: background 0.3s;
 }
 .todo__button--edit:hover {
@@ -161,23 +163,23 @@ $govuk-spacing-scale-9: 60px;
 }
 
 .todo-wrapper {
-	border: 3px solid #ffc033;
-	box-shadow: 3px 3px 0px #dba32a;
-	padding: 10px;
+	border: 0.25rem solid #ffc033;
+	box-shadow: 0.25rem 0.25rem 0rem #dba32a;
+	padding: 0.75rem;
 	width: 60vw;
 	margin-left: auto;
 	margin-right: auto;
 }
 .todo-wrapper--complete {
-	border: 3px solid #478cdb;
-	box-shadow: 3px 3px 0px #386fad;
+	border: 0.25rem solid #478cdb;
+	box-shadow: 0.25rem 0.25rem 0rem #386fad;
 }
 
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
+	padding-top: 4rem; /* Location of the box */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -191,19 +193,19 @@ $govuk-spacing-scale-9: 60px;
 .modal-content {
 	background-color: #fefefe;
 	margin: auto;
-	padding: 20px;
+	padding: 1.5rem;
 	border: 1px solid #888;
 	width: 80%;
 }
 
 .modal__text {
-	margin-bottom: 20px;
+	margin-bottom: 1.5rem;
 }
 
 .modal__button--yes {
-	border: 0.1rem solid rgb(82, 149, 224);
+	border: 0.125rem solid rgb(82, 149, 224);
 	font-weight: 500;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	transition: background 0.3s;
 }
 
@@ -212,9 +214,9 @@ $govuk-spacing-scale-9: 60px;
 	color: white;
 }
 .modal__button--no {
-	border: 0.1rem solid rgb(228, 105, 105);
+	border: 0.125rem solid rgb(228, 105, 105);
 	font-weight: 500;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	transition: background 0.3s;
 }
 
@@ -227,7 +229,7 @@ $govuk-spacing-scale-9: 60px;
 .close {
 	color: #aaaaaa;
 	float: right;
-	font-size: 28px;
+	font-size: 2rem;
 	font-weight: bold;
 }
 
@@ -245,10 +247,10 @@ $govuk-spacing-scale-9: 60px;
 .container {
 	display: block;
 	position: relative;
-	padding-left: 35px;
-	margin-bottom: 12px;
+	padding-left: 2rem;
+	margin-bottom: 0.75rem;
 	cursor: pointer;
-	font-size: 22px;
+	font-size: 0.75rem;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -269,8 +271,8 @@ $govuk-spacing-scale-9: 60px;
 	position: absolute;
 	top: 0;
 	left: 0;
-	height: 25px;
-	width: 25px;
+	height: 1.5rem;
+	width: 1.5rem;
 	background-color: #eee;
 }
 
@@ -298,12 +300,12 @@ $govuk-spacing-scale-9: 60px;
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-	left: 9px;
-	top: 5px;
-	width: 5px;
-	height: 10px;
+	left: 0.5rem;
+	top: 0.25rem;
+	width: 0.25rem;
+	height: 0.75rem;
 	border: solid white;
-	border-width: 0 3px 3px 0;
+	border-width: 0 0.25rem 0.25rem 0;
 	-webkit-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
