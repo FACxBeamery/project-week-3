@@ -125,11 +125,12 @@ xs	$spacing-xs	0.5rem - 8px
     width: 50vw;
     margin-right: 1.5rem;
     padding: 0.5rem 0.5rem 0 0;
-    overflow: scroll;
+    overflow-x: scroll;
     height: 5vh;
     white-space: nowrap;
     display: flex;
     align-items: center;
+    overflow-y: hidden;
 }
 .todo__title--active {
     border: 0.125rem solid #94a1ff;
