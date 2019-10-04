@@ -1,4 +1,4 @@
-const getTodos = (url, method) => {
+const getTodos = (url, method, changingTag) => {
     fetch(`${url}${method ? "/" + method : ""}`, {
         method: "GET",
         headers: {
@@ -7,15 +7,56 @@ const getTodos = (url, method) => {
     })
         .then((res) => {
             res.json().then((json) => {
-                console.log(json);
-
                 resetTodosContainer();
                 addTodosToPage(json);
+                if (!changingTag) {
+                    getTags(json);
+                }
             });
         })
         .catch((err) => {
             console.error(err);
         });
+};
+
+const getTags = (json) => {
+    const allTags = [];
+    json.forEach((todo) => {
+        const todoTag = todo.tag;
+        if (allTags.indexOf(todoTag) === -1 && todoTag !== "") {
+            allTags.push(todoTag);
+        }
+    });
+
+    if (allTags.length > 0) {
+        if (document.getElementById("tags-dropdown")) {
+            document.getElementById("tags-dropdown").remove();
+            document.getElementById("tags-dropdown-label").remove();
+        }
+        const form = document.getElementById("sort-and-filter");
+        const tagsDropdown = document.createElement("select");
+        tagsDropdown.id = "tags-dropdown";
+        const label = document.createElement("label");
+        label.textContent = "Filter by tag";
+        label.id = "tags-dropdown-label";
+        const all = document.createElement("option");
+        all.value = "All";
+        all.textContent = "All";
+        tagsDropdown.appendChild(all);
+        allTags.forEach((tag) => {
+            const newTag = document.createElement("option");
+            newTag.value = tag;
+            newTag.textContent = tag;
+            tagsDropdown.appendChild(newTag);
+        });
+        form.appendChild(label);
+        form.appendChild(tagsDropdown);
+    } else {
+        if (document.getElementById("tags-dropdown")) {
+            document.getElementById("tags-dropdown").remove();
+            document.getElementById("tags-dropdown-label").remove();
+        }
+    }
 };
 
 const toggleTodoStatus = (e) => {
@@ -105,7 +146,9 @@ const editTodo = (e) => {
 const addTodo = (target) => {
     const newTodoTitle = document.getElementById("todo-title").value;
     document.getElementById("todo-title").value = "";
-
+    const newTodoTag = document.getElementById("todo-tag").value;
+    console.log(newTodoTag);
+    document.getElementById("todo-tag").value = "";
     if (newTodoTitle) {
         fetch(`/todos`, {
             method: "POST",
@@ -113,7 +156,8 @@ const addTodo = (target) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                title: newTodoTitle
+                title: newTodoTitle,
+                tag: newTodoTag
             })
         })
             .then((res) => {

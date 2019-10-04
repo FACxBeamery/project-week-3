@@ -7,16 +7,19 @@ const addTodo = (req, res) => {
     readFile(req, res, (file) => {
         let parsedTodos = JSON.parse(file);
         const newTitle = req.fields.title;
+        const newTag = req.fields.tag;
         if (!newTitle) {
             return res.status(400).end();
         } else {
             const newTodo = {
                 id: uuid(),
                 title: newTitle,
+                tag: newTag,
                 completed: false,
                 dateCreated: Date.now(),
                 dateEdited: Date.now()
             };
+            console.log(newTodo);
             parsedTodos = pf.addToArray(parsedTodos, newTodo);
             writeFile(
                 JSON.stringify(parsedTodos),

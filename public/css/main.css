@@ -62,13 +62,13 @@ xs	$spacing-xs	0.5rem - 8px
 }
 
 .header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header__image {
-	height: 40vh;
+    height: 40vh;
 }
 
 .header__title {
@@ -87,6 +87,11 @@ xs	$spacing-xs	0.5rem - 8px
 .form {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form:nth-child(2) {
 }
 
 .form__input {
@@ -101,6 +106,10 @@ xs	$spacing-xs	0.5rem - 8px
     box-shadow: 0.25rem 0.25rem 0rem #bdff92;
 }
 
+.form__input:first-of-type {
+    margin-bottom: 0.5rem;
+}
+
 .form__input--warning {
     border: 0.25rem solid indianred;
     box-shadow: 0.25rem 0.25rem 0rem indianred;
@@ -112,7 +121,7 @@ xs	$spacing-xs	0.5rem - 8px
     font-weight: 500;
     font-size: 1.5rem;
     transition: background 0.6s;
-
+    margin-top: 0.5rem;
     border: 0.1rem solid #444;
 }
 
@@ -136,6 +145,18 @@ xs	$spacing-xs	0.5rem - 8px
 }
 .todo__title--active {
     border: 0.125rem solid #94a1ff;
+}
+
+.todo__tag {
+    text-align: left;
+    font-weight: 300;
+    font-style: italic;
+    color: #444;
+    font-size: 0.75rem;
+    width: 10vw;
+    background: #ffb6db;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
 }
 
 .todo__button--remove {
@@ -183,8 +204,7 @@ xs	$spacing-xs	0.5rem - 8px
     box-shadow: 0.25rem 0.25rem 0rem #dba32a;
     padding: 0.75rem;
     width: 60vw;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0.75rem auto;
 }
 .todo-wrapper--complete {
     border: 0.25rem solid #478cdb;
@@ -336,10 +356,9 @@ xs	$spacing-xs	0.5rem - 8px
         align-items: center;
     }
 
-	.form__button {
-		margin-top: 0.5rem;
-	}
-
+    .form__button {
+        margin-top: 0.5rem;
+    }
 }
 
 @media only screen and (max-width: 700px) {

@@ -31,13 +31,22 @@
                     placeholder="what's on your useless mind?"
                     id="todo-title"
                 />
+                <label for="tag" class="visuallyhidden">Todo tag:</label>
+
+                <input
+                    class="form__input"
+                    type="text"
+                    name="tag"
+                    placeholder="Add a tag?"
+                    id="todo-tag"
+                />
                 <button class="form__button" type="submit" id="new-todo-button">
                     ADD
                 </button>
             </form>
             <section id="section" class="section my-5">
                 <h2 class="section__title my-5">your todos</h2>
-                <form action="">
+                <form action="" id="sort-and-filter">
                     <label for="">Sort by:</label>
                     <select id="sortby">
                         <option value="date">Date Created</option>
