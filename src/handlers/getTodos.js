@@ -8,7 +8,6 @@ const getTodos = (req, res) => {
         if (!req.params.sort_method) {
             sortBy = "status";
         } else sortBy = req.params.sort_method;
-
         let parsedTodos = JSON.parse(file);
 
         parsedTodos = pf.sortArray(parsedTodos, sortBy);

@@ -16,12 +16,25 @@ const addTodosToPage = (todos) => {
     todosContainer.id = "todos-container";
     document.getElementById("section").appendChild(todosContainer);
     // ("todos-container");
-    todos.forEach((todo) => todosContainer.appendChild(renderTodo(todo)));
+    let filterTag = "";
+    if (document.getElementById("tags-dropdown")) {
+        filterTag = document.getElementById("tags-dropdown").value;
+    } else {
+        filterTag = "All";
+    }
+    console.log(filterTag);
+    todos.forEach((todo) => {
+        if (filterTag === "All" || filterTag === todo.tag) {
+            todosContainer.appendChild(renderTodo(todo));
+        }
+    });
 };
 
 const renderTodo = (todo) => {
     const todoWrapper = document.createElement("form");
-    todoWrapper.setAttribute("id", todo.id);
+    const todoDiv = document.createElement("div");
+    todoDiv.setAttribute("id", todo.id);
+    todoWrapper.appendChild(todoDiv);
 
     const checkboxWrapper = document.createElement("label");
     checkboxWrapper.classList.add("container");
@@ -63,13 +76,19 @@ const renderTodo = (todo) => {
     removeButton.classList.add("remove-button");
     removeButton.classList.add("todo__button--remove");
 
-    todoWrapper.appendChild(checkboxWrapper);
-    todoWrapper.appendChild(title);
-    todoWrapper.appendChild(editButton);
-    todoWrapper.appendChild(removeButton);
-    todoWrapper.classList.add("flex-center");
+    todoDiv.appendChild(checkboxWrapper);
+    todoDiv.appendChild(title);
+    todoDiv.appendChild(editButton);
+    todoDiv.appendChild(removeButton);
+    todoDiv.classList.add("flex-center");
     todoWrapper.classList.add("todo-wrapper");
-    todoWrapper.classList.add("my-3");
+    todoDiv.classList.add("my-3");
+    if (todo.tag) {
+        const tag = document.createElement("p");
+        tag.textContent = `#${todo.tag}`;
+        tag.classList.add("todo__tag");
+        todoWrapper.appendChild(tag);
+    }
     return todoWrapper;
 };
 
@@ -145,3 +164,10 @@ const modalBox = (todoID) => {
         modal.style.display = "none";
     });
 };
+
+document.addEventListener("change", (e) => {
+    if (e.target.id === "tags-dropdown") {
+        const filter = e.target.value;
+        getTodos("/todos", document.getElementById("sortby").value, true);
+    }
+});
