@@ -31,14 +31,10 @@ if (document.readyState != "loading") {
 
 const resetTodosContainer = () => {
     const todosContainer = document.getElementById("todos-container");
-    // const todos = todosContainer.childNodes;
-    // console.log(todos);
 
-    // for (let i = 0; i < todos.length; i++) {
-    //     todosContainer.removeChild(todos[i]);
-    // }
-
-    todosContainer.innerHTML = "";
+    if (todosContainer) {
+        todosContainer.remove();
+    }
 };
 
 const toggleTodoStatus = (e) => {
@@ -131,7 +127,10 @@ document.getElementById("sortby").addEventListener("change", (e) => {
 });
 
 const addTodosToPage = (todos) => {
-    const todosContainer = document.getElementById("todos-container");
+    const todosContainer = document.createElement("div");
+    todosContainer.id = "todos-container";
+    document.getElementById("section").appendChild(todosContainer);
+    // ("todos-container");
     todos.forEach((todo) => todosContainer.appendChild(renderTodo(todo)));
 };
 
