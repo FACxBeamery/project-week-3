@@ -1,75 +1,72 @@
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<link
-			href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700,700i&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" type="text/css" href="./css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="./css/main.css" />
-		<title>The best To Do App.</title>
-	</head>
-	<body>
-		<header class="header my-6">
-			<h1 class="header__title my-3">TODO APP</h1>
-			<img
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700,700i&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="./css/main.css" />
+        <title>The best To Do App.</title>
+    </head>
+    <body>
+        <header class="header my-6">
+            <h1 class="header__title my-3">TODO APP</h1>
+          <img
 				class="header__image"
 				src="https://assets-ouch.icons8.com/preview/213/b7dd1810-69ec-4975-97a4-940fa81ff552.png"
 				alt="man writing todo list"
 			/>
-		</header>
-		<main class="main my-6">
-			<form class="form my-5" id="form" action="">
-				<input
-					class="form__input"
-					type="text"
-					placeholder="what's on your useless mind?"
-					id="todo-title"
-				/>
-				<button class="form__button" type="submit" id="new-todo-button">
-					ADD
-				</button>
-			</form>
-			<section class="section my-5">
-				<h2 class="section__title my-5">your todos</h2>
-				<form action="">
-					<label for="">Sort by:</label>
-					<select id="sortby">
-						<option value="date">Date Created</option>
-						<option value="recentedited">Recently Edited</option>
-						<option value="status">Status</option>
-					</select>
-				</form>
-				<div id="todos-container" class="my-4"></div>
-			</section>
+        </header>
+        <main class="main my-6">
+            <form class="form my-5" id="form" action="">
+                <label for="title" class="visuallyhidden">Todo title:</label>
 
-			<div id="modal-box" class="modal">
-				<!-- Modal content -->
-				<div class="modal-content">
-					<span class="close">&times;</span>
-					<p id="remove-question" class="modal__text">
-						Are u sure u want to remove this todo?
-					</p>
-					<button
-						class="modal__button--yes"
-						type="submit"
-						id="delete-item"
-					>
-						YES
-					</button>
-					<button
-						class="modal__button--no"
-						type="submit"
-						id="go-back"
-					>
-						NO, go back
-					</button>
-				</div>
-			</div>
-		</main>
-		<footer></footer>
-	</body>
-	<script src="js/index.js"></script>
+
+                <input
+                    class="form__input"
+                    type="text"
+                    name="title"
+                    placeholder="what's on your useless mind?"
+                    id="todo-title"
+                />
+                <button class="form__button" type="submit" id="new-todo-button">
+                    ADD
+                </button>
+            </form>
+            <section id="section" class="section my-5">
+                <h2 class="section__title my-5">your todos</h2>
+                <form action="">
+                    <label for="">Sort by:</label>
+                    <select id="sortby">
+                        <option value="date">Date Created</option>
+                        <option value="recentedited">Recently Edited</option>
+                        <option value="status">Status</option>
+                    </select>
+                </form>
+                <!-- <div id="todos-container" class="my-4"></div> -->
+            </section>
+
+            <div id="modal-box" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p id="remove-question" class="modal__text">
+                        Are u sure u want to remove this todo?
+                    </p>
+                    <button class="modal__button--yes" type="submit" id="delete-item">
+                        YES
+                    </button>
+                    <button class="modal__button--no" type="submit" id="go-back">
+                        NO, go back
+                    </button>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+    </body>
+    <script src="js/index.js"></script>
 </html>

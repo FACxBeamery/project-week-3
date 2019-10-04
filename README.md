@@ -1,6 +1,7 @@
 # Project Week 3: Node.JS server 
 ## by João, Lyndsey and Martha
 
+[![Build Status](https://travis-ci.org/FACxBeamery/project-week-3.svg?branch=master)](https://travis-ci.org/FACxBeamery/project-week-3)
 
 ## Motivation
 The purpose of this project was to create our own Node.JS http server with the npm core modules: `http`, `path`, and `fs`. The server provides a RESTful API for a To Do List app. 
