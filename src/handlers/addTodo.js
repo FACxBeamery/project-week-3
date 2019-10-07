@@ -21,11 +21,7 @@ const addTodo = (req, res) => {
             };
             console.log(newTodo);
             parsedTodos = pf.addToArray(parsedTodos, newTodo);
-            writeFile(
-                JSON.stringify(parsedTodos),
-                res,
-                `todo with id: ${newTodo.id} has been added successfully`
-            );
+            writeFile(JSON.stringify(parsedTodos), res, JSON.stringify(newTodo));
         }
     });
 };
