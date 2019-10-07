@@ -115,6 +115,8 @@ const resetForm = () => {
 };
 
 const addWarningStyling = (element) => {
+    console.log(element);
+
     element.classList.add("form__input--warning");
 };
 
