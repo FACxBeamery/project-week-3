@@ -62,7 +62,7 @@ const getTags = (json) => {
 const toggleTodoStatus = (e) => {
     const todoID = e.target.parentNode.parentNode.id;
 
-    fetch(`/todos/todo/${todoID}`, {
+    fetch(`/todos/${todoID}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
@@ -81,7 +81,7 @@ const toggleTodoStatus = (e) => {
 };
 
 const removeTodo = (todoID) => {
-    fetch(`/todos/todo/${todoID}`, {
+    fetch(`/todos/${todoID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -118,7 +118,7 @@ const editTodo = (e) => {
         todoTitle.classList.remove("todo__title--active");
         const pContent = todoTitle.textContent;
 
-        fetch(`/todos/todo/${todoID}`, {
+        fetch(`/todos/${todoID}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

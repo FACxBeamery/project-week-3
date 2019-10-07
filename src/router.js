@@ -13,8 +13,8 @@ router.get("/todos/:sort_method", getTodos);
 
 router.post("/todos", addTodo);
 
-router.delete("/todos/todo/:id", removeTodo);
+router.delete("/todos/:id", removeTodo);
 
-router.patch("/todos/todo/:id", editTodo);
+router.patch("/todos/:id", editTodo);
 
 module.exports = router;
