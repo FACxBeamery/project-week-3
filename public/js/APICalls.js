@@ -147,34 +147,33 @@ const addTodo = (target) => {
     const newTodoTitle = document.getElementById("todo-title").value;
     document.getElementById("todo-title").value = "";
     const newTodoTag = document.getElementById("todo-tag").value;
-    console.log(newTodoTag);
     document.getElementById("todo-tag").value = "";
-    if (newTodoTitle) {
-        fetch(`/todos`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                title: newTodoTitle,
-                tag: newTodoTag
-            })
+    // if (newTodoTitle) {
+    fetch(`/todos`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: newTodoTitle,
+            tag: newTodoTag
         })
-            .then((res) => {
-                if (!res.ok) {
-                    addWarningStyling(document.getElementById("todo-title"));
-                    addWarningMessageBelow(document.getElementById("form"));
-                    throw new Error("Title is empty");
-                }
-            })
-            .then(() => {
-                resetForm();
+    })
+        .then((res) => {
+            if (!res.ok) {
+                addWarningStyling(document.getElementById("todo-title"));
+                addWarningMessageBelow(document.getElementById("todo-title"));
+                throw new Error("Title is empty");
+            }
+        })
+        .then(() => {
+            resetForm();
 
-                resetTodosContainer();
-                getTodos("/todos", document.getElementById("sortby").value);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+            resetTodosContainer();
+            getTodos("/todos", document.getElementById("sortby").value);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    // }
 };
